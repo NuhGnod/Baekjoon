@@ -14,8 +14,6 @@ public class Main {
 		box[0] = a;
 		box[1] = b;
 		box[2] = c;
-		int is = 0;
-
 		Arrays.sort(box);
 		int l = box[2]; // 지름
 		int cr1 = (l * l - box[0] * box[0]);
@@ -34,7 +32,6 @@ public class Main {
 		} else {
 			System.out.println(num);
 		}
-		// 0 ,1, 2 경우
 
 	}
 
