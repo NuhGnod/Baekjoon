@@ -1,36 +1,32 @@
 package B_11729;
 
-import java.util.*;
+import java.io.*;
 
 public class Main {
-	static int cnt = 0;// total number of movement
+    public static BufferedReader br;
+    public static BufferedWriter bw;
 
-	public static Object hanoi(int a, int from, int mid, int to) {
-		if(a == 1) {
-			cnt++;
-			System.out.println(from + " " + to + "one");
-		}else {
-			
-			
-			hanoi(a-1, from, to, mid);
-			cnt++;
-			System.out.println(from +" "+to);
-			hanoi(a-1, mid, from, to);
-		}
-		return 0;
-	}
+    public static void main(String[] args) throws IOException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int N = Integer.parseInt(br.readLine());
+        int count = (int) Math.pow(2, N) - 1;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int a; // bar A
-		int b; // bar B
-		int c; // bar C
+        System.out.println(count);
+        hanoi(N, 1, 2, 3);
 
-		System.out.println((int) Math.pow(2, n) - 1);
-		hanoi(n, 1, 2, 3);// total num of disk, bar A, bar C
-		System.out.println(cnt);
-	}
+        bw.flush();
+        br.close();
+        bw.close();
+    }
 
+    public static void hanoi(int n, int from, int by, int to) throws IOException {
+        if (n == 0) {
+            return;
+        }
+
+        hanoi(n - 1, from, to, by);
+        bw.write(from + " " + to + "\n");
+        hanoi(n - 1, by, from, to);
+    }
 }
