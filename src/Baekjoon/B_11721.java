@@ -1,4 +1,4 @@
-package Baekjoon;
+package BAEKJOON;
 import java.util.*;
 public class B_11721 {
 
