@@ -18,6 +18,7 @@ public class B_11721 {
 				System.out.println();
 			}
 		}
+		System.out.println("¿ÃªÛ«ÿ");
 		System.out.println(check);
 		
 		
