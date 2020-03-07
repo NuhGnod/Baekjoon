@@ -19,8 +19,8 @@ public class Main {
 		}
 		for (int i = 0; i < M; i++) {
 			while (true) {
-				int index = findIndex(arr, d);
-				if (index <= d.size()/2) {// front
+				int index = findIndex(arr, d, i);
+				if (index <= d.size() / 2) {// front
 					if (arr[i] != d.peekFirst()) {
 
 						MoveLeft(d);
@@ -30,7 +30,7 @@ public class Main {
 						break;
 					}
 				} else {
-					if (index <= d.size()/2) {
+					if (arr[i] != d.peekFirst()) {
 						cnt++;
 						MoveRight(d);
 					} else {
@@ -43,16 +43,21 @@ public class Main {
 		System.out.println(cnt);
 	}
 
-	static int findIndex(int[] arr, Deque<Integer> d) {
-		Deque<Integer> temp = d;
+	static int findIndex(int[] arr, Deque<Integer> d, int k) {
+		Deque<Integer> temp = new LinkedList();
+		Iterator iterator;
+		iterator = d.iterator();
 		int index = -1;
 		int size = d.size();
+		if (iterator.hasNext()) {
+
+		}
 		for (int i = 0; i < size; i++) {
+
 			index++;
-			if (arr[i] == temp.pollFirst())
+			if (arr[k] == Integer.valueOf(iterator.next().toString()))
 				return index;
 		}
-
 		return index;
 	}
 
