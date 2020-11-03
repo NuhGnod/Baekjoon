@@ -46,7 +46,7 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		List<Pair<Integer, String, Integer>> a = new ArrayList<Pair<Integer, String, Integer>>();
 		int N = Integer.valueOf(br.readLine());
-
+//how to compare
 		for (int i = 0; i < N; i++) {
 			String temp[] = br.readLine().split(" ");
 
