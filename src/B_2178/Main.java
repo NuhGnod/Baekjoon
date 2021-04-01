@@ -4,116 +4,65 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
-	public static int row = 0;
-	public static int col = 0;
-	public static int[][] map = null;
-	public static String path = "";
+	static int map[][];
+	static boolean check[][];
+	static int dx[] = { -1, 0, 1, 0 };
+	static int dy[] = { 0, -1, 0, 1 };
+	static int N, M;
 
 	public static void main(String[] args) throws Exception {
-		Scanner sc = new Scanner(System.in);
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-		long begin = System.currentTimeMillis();
-
-		String a[] = new String[2];
-		String line = "";
-
-		a = br.readLine().split(" ");
-		row = Integer.parseInt(a[0]);
-		col = Integer.parseInt(a[1]);
-
-		map = new int[row][col];
-
-		for (int i = 0; i < row; i++) {
-			line = br.readLine();
-			for (int j = 0; j < col; j++) {
-				map[i][j] = (line.charAt(j) - '0');
-
+		String temp[] = br.readLine().split(" ");
+		N = Integer.parseInt(temp[0]);
+		M = Integer.parseInt(temp[1]);
+		map = new int[N][M];
+		check = new boolean[N][M];
+		for (int i = 0; i < N; i++) {
+			String input = br.readLine();
+			for (int j = 0; j < M; j++) {
+				map[i][j] = input.charAt(j) - '0';
+				check[i][j] = false;
 			}
-
 		}
 
-		int dap = 0;
-		path = "";
-		dap = bfs();
-		System.out.println(dap);
-		// System.out.println("#" + 1 + " " + dap + path);
-		map = null;
-		long end = System.currentTimeMillis();
-		// System.out.printf("%.3f (secs)", (end - begin) / 1000.0);
+		check[0][0] = true;
+		bfs(0, 0);
+		System.out.println(map[N - 1][M - 1]);
 
 	}
 
-	private static int bfs() {
-		int ret = 0;
-		int curRow = 0;
-		int curCol = 0;
-		int curDist = 1;
-		String curPath = "";
+	static public void bfs(int x, int y) {
+		Queue<Info> q = new LinkedList();
 
-		LinkedList<Coord> q = new LinkedList<Coord>();
-		q.add(new Coord(curRow, curCol, curDist, curPath));
+		q.add(new Info(x, y));
 
 		while (!q.isEmpty()) {
-			Coord co = (Coord) q.poll();
-			curRow = co.row;
-			curCol = co.col;
-			curDist = co.dist;
-			curPath = co.path;
-			path = curPath;
-			ret = curDist;
-			map[curRow][curCol] = 0;
-			if (curRow == row - 1 && curCol == col - 1)
-				break;
+			Info cur = q.poll();
+			for (int i = 0; i < 4; i++) {
+				int nX = cur.x + dx[i];
+				int nY = cur.y + dy[i];
 
-			if (curRow - 1 >= 0 && map[curRow - 1][curCol] == 1) {
-				q.add(new Coord(curRow - 1, curCol, curDist + 1, curPath));
-			}
-			// 아래로 갈수 있으면
-
-			if (curRow + 1 < row && map[curRow + 1][curCol] == 1) {
-
-				q.add(new Coord(curRow + 1, curCol, curDist + 1, curPath));
-
-			}
-
-			// 왼쪽으로 갈수 있으면
-
-			if (curCol - 1 >= 0 && map[curRow][curCol - 1] == 1) {
-
-				q.add(new Coord(curRow, curCol - 1, curDist + 1, curPath));
-
-			}
-
-			// 오른쪽으로 갈수 있으면
-
-			if (curCol + 1 < col && map[curRow][curCol + 1] == 1) {
-
-				q.add(new Coord(curRow, curCol + 1, curDist + 1, curPath));
-
-			}
-
-		}
-		q.clear();
-		return ret;
-	}
-
-	public static class Coord {
-		int row, col, dist;
-		String path;
-
-		public Coord(int row, int col, int dist, String oldPath) {
-			this.row = row;
-			this.col = col;
-			this.dist = dist;
-			if ("".equals(oldPath)) {
-				this.path = "(" + row + ", " + col + ")";
-
-			} else {
-				this.path = oldPath + "->" + "(" + row + ", " + col + ")";
-
+				if (nX < 0 || nX >= N || nY < 0 || nY >= M) {
+					continue;
+				}
+				if (check[nX][nY] || map[nX][nY] == 0) {
+					continue;
+				}
+				q.add(new Info(nX, nY));
+				map[nX][nY] = map[cur.x][cur.y] + 1;
+				check[nX][nY] = true;
 			}
 		}
 	}
 
+}
+
+class Info {
+	int x;
+	int y;
+
+	public Info(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 }
