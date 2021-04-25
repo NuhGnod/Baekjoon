@@ -26,7 +26,7 @@ public class Main {
 		}
 		for (int i = 0; i < M; i++) {
 			int left = 0;
-			int right = M - 1;
+			int right = N - 1;
 			boolean flag = false;
 			while (right >= left) {
 				int mid = (right + left) / 2;
