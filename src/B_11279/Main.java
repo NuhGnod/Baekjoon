@@ -114,7 +114,7 @@ public class Main {
 			}
 		}
 
-		
+
 		public int remove() {
 			if (size == 1) {
 				return 0;
@@ -133,6 +133,8 @@ public class Main {
 						heap[cur * 2] = temp;
 
 						cur = cur * 2;
+					}else {
+						break;
 					}
 				} else {
 
