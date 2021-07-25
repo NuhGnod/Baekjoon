@@ -1,10 +1,7 @@
 package B_1927;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
+import java.util.*;
 
 
 public class Main {
@@ -86,14 +83,14 @@ public class Main {
 				} else {
 
 					int minIndex = heap[cur * 2] < heap[cur * 2 + 1] ? cur * 2 : cur * 2 + 1;
-					int max = heap[minIndex];
+					int min = heap[minIndex];
 
-					if (max < heap[cur]) {
+					if (min > heap[cur]) {
 						break;
 					} else {
 						int temp = heap[cur];
 						heap[minIndex] = temp;
-						heap[cur] = max;
+						heap[cur] = min;
 
 						cur = minIndex;
 					}
