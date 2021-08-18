@@ -6,7 +6,6 @@ import java.util.*;
 public class Main {
 	static String result = "";
 	static Map<String, List<String>> tree = new HashMap();
-	static int as = 0;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
