@@ -12,7 +12,7 @@ public class Main {
 		// 위 형태에서 1 * 2 타일 2개를 을 2 * 1타일 2개로 바꾸는 방식
 		int n = Integer.parseInt(br.readLine());
 		long dp[] = new long[n + 1];
-
+		//initialize
 		dp[0] = 1;
 		dp[1] = 2;
 		long ans = 0;
