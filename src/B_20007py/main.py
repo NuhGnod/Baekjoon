@@ -33,10 +33,6 @@ def cal():
             pX -= distance[i]
     print(day)
             
-    
-    
-
-
 
 N,M,X,Y = map(int, sys.stdin.readline().split())
 graph=[ [] for _ in range(N)]
