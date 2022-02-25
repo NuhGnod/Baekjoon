@@ -17,12 +17,11 @@ def dijk(start):
     for i in range(len(distance)):
         distance[i] *=2
            
-
 def cal():
     pX = X
     day=1
     distance.sort()
-    print(distance)
+    # print(distance)
     for i in range(len(distance)):
         if distance[i] > X :
             print(-1)
