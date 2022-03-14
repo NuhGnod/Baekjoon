@@ -35,7 +35,6 @@ dijk(v1Distance,v1)
 dijk(v2Distance,v2)
 ans1 = 0
 ans2 = 0
-#??test??#
 # 1 -> v1 -> v2 -> N
 ans1 += distance[v1]
 ans1 += v1Distance[v2]
