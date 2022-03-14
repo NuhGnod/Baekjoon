@@ -9,6 +9,7 @@ public class Main {
 		int a = sc.nextInt();
 		int b = sc.nextInt();
 		System.out.println(a+b);
+		System.out.println("forRemove");
 	}
 
 }
