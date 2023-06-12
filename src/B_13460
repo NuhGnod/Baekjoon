@@ -1,0 +1,85 @@
+package baekjoon.src;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class B_13460 {
+    static int R, C;
+    static String[][] map;
+    static int gox[] = {0, 1, 0, -1};
+    static int goy[] = {1,0,-1,0};
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] s = br.readLine().split(" ");
+        R = Integer.parseInt(s[0]);
+        C = Integer.parseInt(s[1]);
+        map = new String[R][C];
+        Point red, blue, goal;
+        for (int i = 0; i < R; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < C; j++) {
+                char c = line.charAt(j);
+                if (c == 'R') {
+                    red = new Point(i, j);
+                }
+                if (c == 'B') {
+                    blue = new Point(i, j);
+                }
+                if (c == 'O') {
+                    goal = new Point(i, j);
+                }
+                map[i][j] = String.valueOf(c);
+            }
+        }
+    }
+
+    public void dfs(Point p, int x, int y) {
+        validateBoundary(p, x, y);
+        if (!validateBoundary(p, x, y)) {
+            return;
+        }
+        p.x += x;
+        p.y += y;
+        dfs(p, x, y);
+    }
+
+    public void bfs(Point red, Point blue) {
+
+        for (int i = 0; i < 4; i++) {
+            dfs(red, gox[i], goy[i]);
+            dfs(blue, gox[i], goy[i]);
+        }
+
+
+        dfs(red, 0, 1); // right
+        dfs(red, 0, -1); // left
+        dfs(red, 1, 0); // down
+        dfs(red, -1, 0); // up
+
+        dfs(blue, 0, 1); // right
+        dfs(blue, 0, -1); // left
+        dfs(blue, 1, 0); // down
+        dfs(blue, -1, 0); // up
+
+    }
+
+    private boolean validateBoundary(Point p, int x, int y) {
+        int nx = p.x + x;
+        int ny = p.y + y;
+        if (nx < 0 || ny < 0 || nx >= R || ny >= C) {
+            return false;
+        }
+        return true;
+    }
+}
+
+class Point {
+    int x, y;
+    int cnt =0;
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
